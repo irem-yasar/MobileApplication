@@ -1,27 +1,24 @@
-package com.example.createaccountapp
-import android.util.Log
-
+package com.example.mobileapps
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.createaccountapp.databinding.ActivityCreateAccountBinding
-
 
 class CreateAccountActivity : AppCompatActivity() {
 
 
-    private lateinit var binding: ActivityCreateAccountBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCreateAccountBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-
-        binding.newMemberTextView.setOnClickListener {
-            val intent = Intent(this, SecondPageActivity::class.java)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_create_account)
+        val loginLabel = findViewById<TextView>(R.id.loginLabel)
+        loginLabel.setOnClickListener {
+            Log.d("onboarding", "Login  pressed")
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
-        }
     }
 }
-
+    }

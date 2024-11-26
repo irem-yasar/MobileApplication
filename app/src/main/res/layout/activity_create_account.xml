@@ -20,9 +20,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
         android:layout_marginBottom="8dp"
-        android:text="Welcome back"
+        android:text="@string/welcome_text"
         android:textColor="@android:color/black"
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/loginLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_label"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"/>
+
 
     <TextView
         android:id="@+id/signInTextView"
@@ -30,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
         android:layout_marginBottom="32dp"
-        android:text="sign in to access your account"
+        android:text="@string/sign_in_text"
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp" />
 
@@ -78,7 +87,7 @@
             android:id="@+id/rememberMeCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remember me" />
+            android:text="@string/remember_me" />
 
         <TextView
             android:id="@+id/forgotPasswordTextView"
@@ -86,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:text="Forgot password?"
+            android:text="@string/forgot_password_text"
             android:textColor="@android:color/holo_blue_dark" />
     </LinearLayout>
 
@@ -96,16 +105,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Next" />
+        android:text="@string/next_button_text" />
 
     <TextView
         android:id="@+id/newMemberTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:gravity="center"
         android:clickable="true"
         android:focusable="true"
-        android:text="New Member? Register now"
+        android:text="@string/new_member_text"
         android:textColor="#6200EE" />
 
 
