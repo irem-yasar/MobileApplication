@@ -36,7 +36,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_account)
 
         nextButton.setOnClickListener {
+            var isValid = true
+
             if (!isEmailValid) {
+                isValid = false
                 inputEmail.isErrorEnabled = true
                 inputEmail.error = "Email is invalid!"
             } else {
@@ -44,10 +47,24 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (!isPasswordValid) {
+                isValid = false
                 inputPassword.isErrorEnabled = true
                 inputPassword.error = "Password is invalid!"
             } else {
                 inputPassword.isErrorEnabled = false
+            }
+
+            if (isValid) {
+                val email = inputEmailText
+                val password = inputPasswordText
+
+                if (email == "test@te.st" && password == "1234") {
+                    val mainActivityIntent = Intent(this, SecondPage::class.java)
+                    startActivity(mainActivityIntent)
+                } else {
+                    inputPassword.isErrorEnabled = true
+                    inputPassword.error = "Incorrect email or password!"
+                }
             }
         }
 
