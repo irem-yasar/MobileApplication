@@ -41,6 +41,17 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
+    implementation(libs.androidx.fragments)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Mockito for mocking Context
+    testImplementation("org.mockito:mockito-core:4.8.1")  // Replace with the latest version
+    testImplementation("org.mockito:mockito-inline:4.8.1")  // If you need inline mock functionality
+
+    // JUnit for unit testing
+    testImplementation("junit:junit:4.13.2")  // Or the latest version
+
+    // Kotlin Standard Library for test support
+    testImplementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0")  // Or the latest version
 }
