@@ -26,24 +26,29 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(libs.material)  // Correct usage of alias
     testImplementation(libs.junit)
     implementation(libs.androidx.fragments)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // You can either use alias (libs.material) or the traditional implementation
+    // but not both. Since you are using alias, remove this line:
+    // implementation("com.google.android.material:material:1.9.0")
 
     // Mockito for mocking Context
     testImplementation("org.mockito:mockito-core:4.8.1")  // Replace with the latest version
