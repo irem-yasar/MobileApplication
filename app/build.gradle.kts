@@ -17,6 +17,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -40,23 +44,9 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)  // Correct usage of alias
+    implementation(libs.material)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
-    implementation(libs.androidx.fragments)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    // You can either use alias (libs.material) or the traditional implementation
-    // but not both. Since you are using alias, remove this line:
-    // implementation("com.google.android.material:material:1.9.0")
-
-    // Mockito for mocking Context
-    testImplementation("org.mockito:mockito-core:4.8.1")  // Replace with the latest version
-    testImplementation("org.mockito:mockito-inline:4.8.1")  // If you need inline mock functionality
-
-    // JUnit for unit testing
-    testImplementation("junit:junit:4.13.2")  // Or the latest version
-
-    // Kotlin Standard Library for test support
-    testImplementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0")  // Or the latest version
 }
