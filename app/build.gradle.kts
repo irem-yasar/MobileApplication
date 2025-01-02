@@ -42,10 +42,16 @@ android {
 }
 
 dependencies {
+    // Core libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.recyclerview)
+
+    // Add the Fragments library
+    implementation("androidx.fragment:fragment-ktx:1.6.1") // Latest version as of January 2025
+
+    // Testing libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

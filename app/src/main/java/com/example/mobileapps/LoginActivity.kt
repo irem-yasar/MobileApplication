@@ -37,3 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+fun commit() {
+    TODO("Not yet implemented")
+}

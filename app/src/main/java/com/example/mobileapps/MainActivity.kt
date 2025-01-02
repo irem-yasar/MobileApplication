@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
             Recipe(3, "Burger", "Juicy beef burger", R.drawable.hamburger)
         )
 
-        // Set up the RecyclerView
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = RecipeAdapter(recipes, object : RecipeClickListener {

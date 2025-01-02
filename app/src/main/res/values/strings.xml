@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Mobile Apps</string>
+
     <string name="login_label">Login</string>
     <string name="new_member_text">New Member</string>
     <string name="forgot_password_text">Forgot Password?</string>
-    <string name="sign_in_text">sign in to access your account</string>
+    <string name="sign_in_text">Sign in to access your account</string>
     <string name="welcome_text">Welcome back</string>
     <string name="remember_me">Remember me</string>
+
     <string name="next_button_text">Next</string>
 </resources>
