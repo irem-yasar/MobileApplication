@@ -11,7 +11,14 @@ import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 
-class RegisterFragment(private val credentialsManager: CredentialsManager) : Fragment() {
+class RegisterFragment : Fragment() {
+
+    private lateinit var credentialsManager: CredentialsManager
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        credentialsManager = (activity as LoginActivity).credentialsManager
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,7 +74,7 @@ class RegisterFragment(private val credentialsManager: CredentialsManager) : Fra
 
                 // Navigate to LoginFragment
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, LoginFragment(CredentialsManager))
+                    .replace(R.id.fragment_container, LoginFragment.newInstance())
                     .commit()
             } else {
                 showToast("The email is already in use. Please try another.")
@@ -78,7 +85,7 @@ class RegisterFragment(private val credentialsManager: CredentialsManager) : Fra
         alreadyMemberTextView.setOnClickListener {
             // Navigate to LoginFragment
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, LoginFragment(CredentialsManager))
+                .replace(R.id.fragment_container, LoginFragment.newInstance())
                 .commit()
         }
     }
@@ -86,5 +93,15 @@ class RegisterFragment(private val credentialsManager: CredentialsManager) : Fra
     // Helper method for Toast messages
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        fun newInstance(): RegisterFragment {
+            return RegisterFragment().apply {
+                arguments = Bundle().apply {
+                    // Add any necessary arguments here
+                }
+            }
+        }
     }
 }
