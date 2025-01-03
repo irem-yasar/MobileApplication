@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -22,7 +22,7 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -42,14 +42,13 @@ android {
 }
 
 dependencies {
-    // Core libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.recyclerview)
 
     // Add the Fragments library
-    implementation("androidx.fragment:fragment-ktx:1.6.1") // Latest version as of January 2025
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
 
     // Testing libraries
     testImplementation(libs.junit)

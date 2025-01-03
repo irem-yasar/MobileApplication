@@ -1,5 +1,10 @@
 pluginManagement {
     repositories {
+        google() // Google's repository for Android plugins
+        mavenCentral() // Central repository for dependencies
+        gradlePluginPortal() // Required for general Gradle plugins
+
+        // Content filtering to optimize Gradle performance
         google {
             content {
                 includeGroupByRegex("com\\.android.*")
@@ -7,18 +12,15 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
-        mavenCentral()
-        gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS) // Ensures all dependencies come from defined repositories
     repositories {
-        google()
-        mavenCentral()
+        google() // Android dependencies
+        mavenCentral() // Other Java/Kotlin libraries
     }
 }
 
 rootProject.name = "Mobile Apps"
-include(":app")
- 
+include(":app") // Includes the app module
