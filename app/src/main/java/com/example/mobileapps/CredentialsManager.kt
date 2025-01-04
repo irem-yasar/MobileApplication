@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 class CredentialsManager(
     private val context: Context? = null // Optional for testing
 ) {
-
     private val sharedPreferences: SharedPreferences = context?.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
         ?: throw IllegalArgumentException("Context must be provided for SharedPreferences")
 
@@ -30,5 +29,11 @@ class CredentialsManager(
         val savedPassword = sharedPreferences.getString(email, null)
         return savedPassword == password
     }
+
+    // Add debugging logs to verify context and SharedPreferences functionality
+    fun isContextValid(): Boolean {
+        return context != null
+    }
 }
+
 

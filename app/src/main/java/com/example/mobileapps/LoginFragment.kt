@@ -3,6 +3,7 @@ package com.example.mobileapps
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,8 +38,15 @@ class LoginFragment : Fragment() {
         val nextButton = view.findViewById<MaterialButton>(R.id.nextButton)
         val newMemberTextView = view.findViewById<View>(R.id.newMemberTextView)
 
+        // Debugging log to check the button state
+        Log.d("LoginFragment", "Is NextButton enabled? ${nextButton.isEnabled}")
+
+        // Ensure the button is enabled
+        nextButton.isEnabled = true
+
         // Set up the "Next" button
         nextButton.setOnClickListener {
+            Log.d("LoginFragment", "Next button clicked")
             val email = emailInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
 
@@ -54,7 +62,6 @@ class LoginFragment : Fragment() {
 
             if (credentialsManager.areCredentialsValid(email, password)) {
                 Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
-                // Navigate to the next screen
             } else {
                 Toast.makeText(context, "Invalid email or password", Toast.LENGTH_SHORT).show()
             }
@@ -62,11 +69,14 @@ class LoginFragment : Fragment() {
 
         // Set up "New Member" text view
         newMemberTextView.setOnClickListener {
+            Log.d("LoginFragment", "New Member clicked")
             (activity as? LoginActivity)?.navigateToRegister()
         }
 
         return view
     }
+
+
 
     companion object {
         fun newInstance(): LoginFragment {

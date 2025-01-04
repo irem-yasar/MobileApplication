@@ -37,7 +37,3 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 }
-
-fun commit() {
-    TODO("Not yet implemented")
-}

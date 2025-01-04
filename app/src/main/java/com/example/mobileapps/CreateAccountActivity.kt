@@ -1,36 +1,52 @@
 package com.example.mobileapps
-
+import android.widget.Button
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
+
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 class CreateAccountActivity : AppCompatActivity() {
+    private lateinit var credentialsManager: CredentialsManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_create_account)
+        setContentView(R.layout.activity_second_page2)
 
-        // Find the "Already a Member" label and set the onClickListener to go to LoginPage
-        val loginLabel = findViewById<TextView>(R.id.loginLabel)
-        loginLabel.setOnClickListener {
-            Log.d("onboarding", "Login pressed")
-            // This will navigate back to the SecondPage activity
-            val intent = Intent(this, SecondPage::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-            startActivity(intent)
-        }
+        credentialsManager = CredentialsManager(this)  // Initialize CredentialsManager
 
-        // Find the "New Member Register Here" label and set the onClickListener
-        val registerLabel = findViewById<TextView>(R.id.newMemberTextView)  // Assuming this is your "New Member Register Here"
-        registerLabel.setOnClickListener {
-            Log.d("onboarding", "New Member Register pressed")
-            // This will navigate to SecondPage activity
-            val intent = Intent(this, SecondPage::class.java)
-            startActivity(intent)
+//       val loginLabel = findViewById<TextView>(R.id.loginLabel)
+//        loginLabel.setOnClickListener {
+//            Log.d("onboarding", "Login pressed")
+//            val intent = Intent(this, SecondPage::class.java)
+//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+//            startActivity(intent)
+//        }
+
+        val registerButton = findViewById<Button>(R.id.nextButton)  // Assuming you have a Button for registration
+        registerButton.setOnClickListener {
+            val email = findViewById<EditText>(R.id.validEmailEditText).text.toString()
+            val password = findViewById<EditText>(R.id.strongPasswordEditText).text.toString()
+
+            if (credentialsManager.isEmailValid(email) && credentialsManager.isPasswordValid(password)) {
+                val isRegistered = credentialsManager.register(email, password)
+                if (isRegistered) {
+                    Log.d("onboarding", "User registered successfully")
+                    // Navigate to login or home page
+                    val intent = Intent(this, SecondPage::class.java)
+                    startActivity(intent)
+                } else {
+                    Log.d("onboarding", "Email already registered")
+                    // Show error message to user
+                }
+            } else {
+                Log.d("onboarding", "Invalid email or password")
+                // Show error message to user
+            }
         }
     }
 }

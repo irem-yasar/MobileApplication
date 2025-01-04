@@ -1,6 +1,7 @@
 package com.example.mobileapps
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,11 @@ class RegisterFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        credentialsManager = (activity as LoginActivity).credentialsManager
+
+        // Ensure credentialsManager is correctly passed and initialized
+        credentialsManager = (activity as? LoginActivity)?.credentialsManager
+            ?: throw IllegalStateException("CredentialsManager not initialized")
+        Log.d("RegisterFragment", "CredentialsManager initialized: $credentialsManager")
     }
 
     override fun onCreateView(
@@ -38,9 +43,15 @@ class RegisterFragment : Fragment() {
         val termsCheckBox = view.findViewById<MaterialCheckBox>(R.id.rememberMeCheckBox)
         val nextButton = view.findViewById<MaterialButton>(R.id.nextButton)
         val alreadyMemberTextView = view.findViewById<MaterialTextView>(R.id.alreadyMemberTextView)
+        Log.d("RegisterFragment", "onViewCreated called")
+        Log.d("RegisterFragment", "Button initialized: ${nextButton != null}")
 
-        // Listener for the "NEXT" button
         nextButton.setOnClickListener {
+            Log.d("RegisterFragment", "Next button clicked")
+
+            // Simple Toast for verification
+            Toast.makeText(requireContext(), "Next Button Clicked", Toast.LENGTH_SHORT).show()
+
             val fullName = fullNameInput.text.toString()
             val email = emailInput.text.toString()
             val password = passwordInput.text.toString()
@@ -80,6 +91,7 @@ class RegisterFragment : Fragment() {
                 showToast("The email is already in use. Please try another.")
             }
         }
+
 
         // Listener for the "Already a member? Log In" button
         alreadyMemberTextView.setOnClickListener {
