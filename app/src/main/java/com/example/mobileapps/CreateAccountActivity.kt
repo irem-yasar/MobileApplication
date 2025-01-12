@@ -37,7 +37,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 if (isRegistered) {
                     Log.d("onboarding", "User registered successfully")
                     // Navigate to login or home page
-                    val intent = Intent(this, SecondPage::class.java)
+                    val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                 } else {
                     Log.d("onboarding", "Email already registered")

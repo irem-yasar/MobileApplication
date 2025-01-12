@@ -1,48 +1,80 @@
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Recipe Image -->
     <ImageView
         android:id="@+id/recipeImage"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="200dp"
-        android:scaleType="centerCrop"/>
-        <!--android:src="@drawable/ic_placeholder"-->
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/recipe_image" />
 
+    <!-- Recipe Name -->
     <TextView
         android:id="@+id/recipeName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_marginTop="8dp" />
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/recipeImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:text="@string/recipe_name" />
 
+    <!-- Recipe Description -->
     <TextView
         android:id="@+id/recipeDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/recipeName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"
+        android:text="@string/recipe_description" />
+
+    <!-- Buttons Container -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/recipeDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp">
 
-        <Button
+        <!-- Like Button -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/likeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Like" />
+            android:text="@string/like"
+            app:icon="@drawable/ic_thumb_up"
+            app:iconGravity="textStart"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp" />
 
-        <Button
+        <!-- Share Button -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/shareButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Share"
+            android:text="@string/share"
+            app:icon="@drawable/ic_share"
+            app:iconGravity="textStart"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:layout_marginStart="16dp" />
     </LinearLayout>
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
