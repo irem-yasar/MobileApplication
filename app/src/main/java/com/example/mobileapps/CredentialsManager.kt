@@ -2,12 +2,15 @@ package com.example.mobileapps
 
 import android.content.Context
 import android.content.SharedPreferences
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class CredentialsManager(
-    private val context: Context? = null // Optional for testing
+    private val context: Context
 ) {
-    private val sharedPreferences: SharedPreferences = context?.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
-        ?: throw IllegalArgumentException("Context must be provided for SharedPreferences")
+    private val sharedPreferences: SharedPreferences =
+        context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE)
+
+    private val _isLoggedIn = MutableStateFlow(isUserLoggedIn())
 
     fun isEmailValid(email: String): Boolean {
         return email.contains("@") && email.contains(".")
@@ -22,7 +25,7 @@ class CredentialsManager(
             return false // Email already exists
         }
         sharedPreferences.edit().putString(email, password).apply() // Save credentials
-        return true // Registration successful
+        return true
     }
 
     fun areCredentialsValid(email: String, password: String): Boolean {
@@ -30,10 +33,13 @@ class CredentialsManager(
         return savedPassword == password
     }
 
-    // Add debugging logs to verify context and SharedPreferences functionality
-    fun isContextValid(): Boolean {
-        return context != null
+    fun logout() {
+        sharedPreferences.edit().clear().apply()
+        _isLoggedIn.value = false
     }
+
+    private fun isUserLoggedIn(): Boolean {
+        return sharedPreferences.all.isNotEmpty() // Basic check
+    }
+
 }
-
-

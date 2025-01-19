@@ -30,9 +30,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".SecondPage"
-            android:exported="true" />
 
         <activity
             android:name=".MainActivity"
